@@ -7,6 +7,11 @@
 
 <h1>Page d'Accueil</h1>
 
+ {# {% if app.user.isVerified == 0 %}
+    <p class="text-danger">Votre compte n'est pas encore vérifié</p>
+    {% else %}
+    <p class="text-success">Votre compte vérifié</p>
+ {% endif %} #}
 
  
  {% set name = 'salle 1' %}
