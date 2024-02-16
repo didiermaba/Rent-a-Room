@@ -7,7 +7,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class RoomCrudController extends AbstractCrudController
@@ -22,11 +24,11 @@ class RoomCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('name')->hideOnForm(),
+            TextField::new('name'),
             TextEditorField::new('description'),
-            ChoiceField::new('category')->autocomplete(),
-            TextEditorField::new('capacity'),
-            TextEditorField::new('feature'),
+            NumberField::new('capacity')->setNumDecimals(3),
+            AssociationField::new('category')->autocomplete(),
+            AssociationField::new('feature')->autocomplete(),
         ];
     }
     
