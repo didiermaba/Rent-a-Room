@@ -19,6 +19,49 @@
 		{% endblock %}
 	</head>
 	<body>
+
+	<header class="d-flex justify-content-between align-items-center p-3 bg-dark">
+	     <img src={{ asset('/images/salle6-p.jpg') }} alt="logo" width="60">
+
+		  <div class="d-flex gap-3 align-items-center">   
+		  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+		     {% if is_granted('ROLE_ADMIN') %}
+						<a href="{{ path('admin') }}" class="text-white text-decoration-none">Tableau de bord</a>
+						<span class="text-white">~</span>
+			 {% endif %}
+		        <a href="" class="text-white text-decoration-none">Mon compte</a>
+		        <a href={{ path('app_logout') }} class="text-white text-decoration-none">Decconexion</a>
+		  {% else %}
+		        <a href={{ path('app_register') }} class="text-white text-decoration-none">Inscrption</a>
+		      <a href={{ path('app_login') }} class="btn btn-primary rounded-pill">Connexion</a>
+		  {% endif %}
+ 		 </div>
+
+	</header>
+
+	 <div class="d-flex gap-3 w-100 justify-content-center bg-primary p-2">
+			<a href={{ path('reunion') }} class="text-white text-decoration-none">Salles de réunion</a>
+			<a href={{ path('formation') }} class="text-white text-decoration-none">Salles de formation</a>
+			<a href={{ path('amphitheatre') }} class="text-white text-decoration-none">Amphithéatre</a>
+			<a href={{ path('spectacle') }} class="text-white text-decoration-none">Salles de spectacle</a>
+			<a href={{ path('polyvalente') }} class="text-white text-decoration-none">Salles polyvalentes</a>
+			<a href={{ path('gymnase') }} class="text-white text-decoration-none">Gymnases</a>
+			<a href={{ path('sans') }} class="text-white text-decoration-none">Autres</a>
+     </div>
+	<main>
+		
 		{% block body %}{% endblock %}
+    </main>		
+	 
+	    <footer class="d-flex gap-3 w-100 justify-content-center bg-black">
+			<a href={{ path('reunion') }} class="text-white text-decoration-none"></a>
+			<a href={{ path('formation') }} class="text-white text-decoration-none"></a>
+			<a href={{ path('amphitheatre') }} class="text-white text-decoration-none"></a>
+			<a href={{ path('spectacle') }} class="text-white text-decoration-none"></a>
+			<a href={{ path('polyvalente') }} class="text-white text-decoration-none"></a>
+			<a href={{ path('gymnase') }} class="text-white text-decoration-none"></a>
+			<a href={{ path('sans') }} class="text-white text-decoration-none"></a>
+		</footer>
+	 
 	</body>
 </html>

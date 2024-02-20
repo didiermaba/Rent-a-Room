@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+{# <div class="container">
+ {% if app.user.isVerified == 0 %}
+    <p class="text-danger">Votre compte n'est pas encore vérifié</p>
+    {% else %}
+    <p class="text-success">Votre compte vérifié</p>
+ {% endif %}
+</div> #}
+ <div class="container">
+
+ </div>
+ 
+ {% set name ="salle 1" %}
+
+ <div class="container-fluid vh-100 bg-body-gray">
+     <div class="d-flex justify-content-center align-items-center pt-5">
+         <div class="card rounded-4 shadow-lg p-4 d-flex col-3 gap-1 text-center aligne-items-center justify-content-center">
+ <h3> {{name}} </h3>
+            <img src={{ asset('/images/salle1.jpg') }} alt="200">
+            
+            <p>lorem En remplissant ce formulaire un mail sera envoyé ...</p>
+            <P>Capacité ... </p>   
+            {# <P>&copy;{{'now'|date('d-M-Y')}}</P> #}
+			<a href="" class="btn btn-custom btn-lg mt-5 rounded-pill bg-primary">Réserver</a>
+		     
+         </div>
+     </di>
+ </div>
+
+{% endblock %}
