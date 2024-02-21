@@ -2,18 +2,22 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\RoomRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/r')] 
 class RoomController extends AbstractController
 {
-    #[Route('/room', name: 'app_room')]
-    public function index(): Response
+    #[Route('/', name: 'app_room', methods: ['GET'])]
+    public function index(
+        RoomRepository $roomRepository,
+    ): Response
+
     {
         return $this->render('room/index.html.twig', [
-            'controller_name' => 'RoomController',
+            'rooms' => $roomRepository->findAll()
         ]);
     }
 }

@@ -1,9 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RoomController!{% endblock %}
+{% block title %}Hello RoomController!
+{% endblock %}
 
 {% block body %}
-  
-  {{ dump(room) }}
 
+	<div class="p-4 d-flex justify-content-center mb-4 border-bottom border-2">
+		<h1>Nos salles</h1>
+	</div>
+	<div class="container bg-body-gray">
+		<div class="row p-3">
+			{% for item in rooms %}
+				<div class="col-lg-3 col-md-4 col-sm-6 shadow-sm position-relative">
+					<img src="{{ asset('/images/salle1.jpg') }}" class="img-fluid rounded-4 pt-3" alt="">
+                    {# <img src={{ item.images.association}} alt=""> #}
+					<div class="container p-2">
+						<h3>
+							{{item.name}}
+						</h3>
+
+						<p>{{item.description | slice(0,130)}} ...</p>
+						<p>Capacité :
+							{{item.capacity}}
+							places</p>
+						<a href="" class="btn btn-custom btn-lg m-2 rounded-pill bg-primary">Réserver</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}
