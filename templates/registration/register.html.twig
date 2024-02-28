@@ -50,6 +50,24 @@
                 }) }}
 
                     <div class="form-floating mb-2">
+                        {{ form_widget(registrationForm.name, {
+                            attr: {
+                                class: 'form-control',
+                            }
+                        }) }}
+                        <label for="floatingInput">Le Nom de votre etablissement</label>
+                    </div> <!-- END OF EMAIL INPUT -->
+
+                    <div class="form-floating mb-2">
+                        {{ form_widget(registrationForm.lastname, {
+                            attr: {
+                                class: 'form-control',
+                            }
+                        }) }}
+                        <label for="floatingInput">Le 2e Nom de votre etablissement</label>
+                    </div> <!-- END OF EMAIL INPUT -->
+
+                    <div class="form-floating mb-2">
                         {{ form_widget(registrationForm.email, {
                             attr: {
                                 class: 'form-control',

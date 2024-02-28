@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservation
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid vh-200 bg-body-gray">
+		<div class="d-flex justify-content-center align-items-center pt-5">
+			<div class="card rounded-4 shadow-lg p-4 d-flex col-3 gap-1 text-center aligne-items-center justify-content-center">
+				<h3>
+					{{room.name}}
+				</h3>
+				 {% for image in room.images %}
+                    <img src="{{ asset(image.url) }}" alt="" class="rounded-2">
+                {% endfor %}
+
+				<p>{{room.description | slice(0, 120)}}...</p>
+				<P>Capacité : {{room.capacity}} places </p>
+                <p>Catégorie : {{ room.category.name }}</p>
+               
+                {% for feature in room.feature %}
+                    <p>Caractéristique : {{ feature.name }}</p>
+                {% endfor %}
+		
+				<a href="" class="btn btn-custom btn-lg mt-5 rounded-pill bg-primary">Réserver</a>
+
+			</div>
+		</di>
+	</div>
+{% endblock %}
+
+
+{# <ul>
+        {{ dump(room) }}
+			{% for room in rooms %}
+				<li>
+					<a href="{{ path('rooms', {id: room.id }) }}">{{ room.name }}</a>
+				</li>
+			{% endfor %}
+		</ul> #}

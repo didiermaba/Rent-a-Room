@@ -15,56 +15,10 @@ class PageController extends AbstractController
         ]);
     }
 
-    #[Route('/reunion', name: 'reunion', methods: ['GET'])]
-    public function reunion(): Response
+    #[Route('/account', name: 'account', methods: ['GET', 'POst'])]
+    public function account(): Response
     {
-        return $this->render('page/home.html.twig', [
-            'title' => 'Salles de réunion',
-        ]);
-    }
-
-    #[Route('/formation', name: 'formation', methods: ['GET'])]
-    public function formation(): Response
-    {
-        return $this->render('page/home.html.twig', [
-            'title' => 'Salles de formation',
-        ]);
-    }
-
-    #[Route('/amphitheatre', name: 'amphitheatre', methods: ['GET'])]
-    public function amphitheatre(): Response
-    {
-        return $this->render('page/home.html.twig', [
-            'title' => 'Amphithéatre',
-        ]);
-    }
-
-    #[Route('/spectacle', name: 'spectacle', methods: ['GET'])]
-    public function spectacle(): Response
-    {
-        return $this->render('page/home.html.twig', [
-            'title' => 'Salles de spectacle',
-        ]);
-    }
-
-    #[Route('/polyvalente', name: 'polyvalente', methods: ['GET'])]
-    public function polyvalente(): Response
-    {
-        return $this->render('page/home.html.twig', [
-            'title' => 'Salles polyvalentes',
-        ]);
-    }
-    #[Route('/gymnase', name: 'gymnase', methods: ['GET'])]
-    public function gymnase(): Response
-    {
-        return $this->render('page/home.html.twig', [
-            'title' => 'Gymnase',
-        ]);
-    }
-    #[Route('/sans', name: 'sans', methods: ['GET'])]
-    public function sans(): Response
-    {
-        return $this->render('page/home.html.twig', [
+        return $this->render('page/account.html.twig', [
             'title' => 'Sans Catégorie',
         ]);
     }

@@ -1,0 +1,18 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Salle
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<ul>
+       
+			{% for reservation in reservations %}
+				 <li>
+					<a href="{{ path('reservations', {id: reservation.id }) }}">{{ reservation.room.name }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

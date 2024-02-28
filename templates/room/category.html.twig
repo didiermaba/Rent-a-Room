@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}les salles
+{% block title %}les salles par catégories
 {% endblock %}
 
 {% block body %}
@@ -15,14 +15,18 @@
 				Bienvenu
 				<span class="text-danger">{{ app.user.name }}</span>!
 			{% else %}
-				A quand votre propre code ?
+				What is your next sweet home?
 			{% endif %}
 		</h1>
 	</div>
 
+    {# {{ dump(catRooms) }} #}
+
 	<div class="container bg-body-gray">
 		<div class="row p-3">
-			{% for item in rooms %}
+
+		{{ dump(catRooms) }}
+			{% for item in catRooms %}
 				<div class="col-lg-3 col-md-4 col-sm-6 shadow-sm position-relative">
 					{# <img
 					src="{{ asset('/images/salle1.jpg') }}" class="img-fluid rounded-4 pt-3" alt=""> #}
@@ -40,8 +44,8 @@
 						<p>Capacité :
 							{{item.capacity}}
 							places</p>
-						<a href="{{ path('book_room', {id: item.id } ) }}" class="btn btn-custom btn-lg m-2 rounded-pill bg-primary">Réserver</a>
-						<a href="{{ path('room.show', {id: item.id } ) }}" class="btn btn-custom btn-lg m-2 rounded-pill bg-primary">Voir plus</a>
+						<a href={{'/book-a-room/{id}'}} class="btn btn-custom btn-lg m-2 rounded-pill bg-primary">Réserver</a>
+						<a href={{'/book-a-room/{id}'}} class="btn btn-custom btn-lg m-2 rounded-pill bg-primary">Voir</a>
 					</div>
 				</div>
 			{% endfor %}

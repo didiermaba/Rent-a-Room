@@ -15,53 +15,54 @@
 			{% block importmap %}
 				{{ importmap('app') }}
 			{% endblock %}
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 		{% endblock %}
 	</head>
 	<body>
 
-	<header class="d-flex justify-content-between align-items-center p-3 bg-dark">
-	     <img src={{ asset('/images/salle6-p.jpg') }} alt="logo" width="60">
+		<header class="d-flex justify-content-between align-items-center p-3 bg-dark">
+			<a href="{{ path('app_room') }}"><img src={{ asset('/images/salle6-p.jpg') }} alt="logo" width="60"></a>
 
-		  <div class="d-flex gap-3 align-items-center">   
-		  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-		     {% if is_granted('ROLE_ADMIN') %}
+			<div class="d-flex gap-3 align-items-center">
+				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					{% if is_granted('ROLE_ADMIN') %}
 						<a href="{{ path('admin') }}" class="text-white text-decoration-none">Tableau de bord</a>
-						<span class="text-white">~</span>
-			 {% endif %}
-		        <a href="" class="text-white text-decoration-none">Mon compte</a>
-		        <a href={{ path('app_logout') }} class="text-white text-decoration-none">Decconexion</a>
-		  {% else %}
-		        <a href={{ path('app_register') }} class="text-white text-decoration-none">Inscrption</a>
-		      <a href={{ path('app_login') }} class="btn btn-primary rounded-pill">Connexion</a>
-		  {% endif %}
- 		 </div>
+						<span class="text-white">|</span>
+					{% endif %}
+					<a href={{ path('account') }} class="text-white text-decoration-none {{ app.current_route == 'account' ? 'active': ''}}">Mon compte</a>
+					<a href={{ path('app_logout') }} class="text-white text-decoration-none">Déconnexion</a>
+				{% else %}
+					<a href={{ path('app_register') }} class="text-white text-decoration-none">Inscrption</a>
+					<a href={{ path('app_login') }} class="btn btn-primary rounded-pill">Connexion</a>
+				{% endif %}
+			</div>
 
-	</header>
+		</header>
 
-	 <div class="d-flex gap-3 w-100 justify-content-center bg-primary p-2">
-			<a href={{ path('reunion') }} class="text-white text-decoration-none">Salles de réunion</a>
-			<a href={{ path('formation') }} class="text-white text-decoration-none">Salles de formation</a>
-			<a href={{ path('amphitheatre') }} class="text-white text-decoration-none">Amphithéatre</a>
-			<a href={{ path('spectacle') }} class="text-white text-decoration-none">Salles de spectacle</a>
-			<a href={{ path('polyvalente') }} class="text-white text-decoration-none">Salles polyvalentes</a>
-			<a href={{ path('gymnase') }} class="text-white text-decoration-none">Gymnases</a>
-			<a href={{ path('sans') }} class="text-white text-decoration-none">Autres</a>
-     </div>
-	<main>
-		
-		{% block body %}{% endblock %}
-    </main>		
-	 
-	    <footer class="d-flex gap-3 w-100 justify-content-center bg-black">
-			<a href={{ path('reunion') }} class="text-white text-decoration-none"></a>
-			<a href={{ path('formation') }} class="text-white text-decoration-none"></a>
-			<a href={{ path('amphitheatre') }} class="text-white text-decoration-none"></a>
-			<a href={{ path('spectacle') }} class="text-white text-decoration-none"></a>
-			<a href={{ path('polyvalente') }} class="text-white text-decoration-none"></a>
-			<a href={{ path('gymnase') }} class="text-white text-decoration-none"></a>
-			<a href={{ path('sans') }} class="text-white text-decoration-none"></a>
+		<div class="d-flex gap-3 w-100 justify-content-center bg-primary p-2">
+			<a href="{{ path('app_room_category', {'category': 'Salle de réunion'}) }}" class="text-white text-decoration-none">Salles de réunion</a>
+			<a href="{{ path('app_room_category', {'category': 'Salle de formation'}) }}" class="text-white text-decoration-none">Salles de formation</a>
+			<a href="{{ path('app_room_category', {'category': 'Amphithéatre'}) }}" class="text-white text-decoration-none">Amphithéatre</a>
+			<a href="{{ path('app_room_category', {'category': 'Salle de spectacle'}) }}" class="text-white text-decoration-none">Salles de spectacle</a>
+			<a href="{{ path('app_room_category', {'category': 'Gymnase'}) }}" class="text-white text-decoration-none">Gymnases</a>
+			<a href="{{ path('app_room_category', {'category': 'Salle polyvalente'}) }}" class="text-white text-decoration-none">Salles polyvalentes</a>
+			<a href="{{ path('app_room_category', {'category': 'Sans Catégorie'}) }}" class="text-white text-decoration-none">Autres</a>
+			
+		</div>
+		<main>
+
+			{% block body %}{% endblock %}
+		</main>
+
+		<footer
+			class="d-flex gap-3 w-100 justify-content-center bg-black">{# <a href={{ path('reunion') }} class="text-white text-decoration-none"></a>
+							<a href={{ path('formation') }} class="text-white text-decoration-none"></a>
+							<a href={{ path('amphitheatre') }} class="text-white text-decoration-none"></a>
+							<a href={{ path('spectacle') }} class="text-white text-decoration-none"></a>
+							<a href={{ path('polyvalente') }} class="text-white text-decoration-none"></a>
+							<a href={{ path('gymnase') }} class="text-white text-decoration-none"></a>
+							<a href={{ path('sans') }} class="text-white text-decoration-none"></a> #}
 		</footer>
-	 
+
 	</body>
 </html>
