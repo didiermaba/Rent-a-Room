@@ -32,39 +32,50 @@ class ReservationController extends AbstractController
         ]);
     }
 
-    #[Route('/book-a-room/{id}', name: 'book_room', methods: ['GET', 'POST'])]
+    #[Route('/book-a-room/{id}', name: 'booking', methods: ['GET', 'POST'])]
     public function bookRoom(int $id, Request $request, EntityManagerInterface $em)
     {
-        // Vérifie si l'utilisateur est connecté, sinon redirectionvers la page de connexion
+        // Vérifie si l'utilisateur est connecté, sinon redirection vers la page de connexion
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
         }
-
+    
         // Récupère la salle à partir de l'ID fourni dans l'URL
         $room = $em->getRepository(Room::class)->find($id);
-
+    
         // Vérifie si la salle existe
         if (!$room) {
             throw $this->createNotFoundException('Room not found');
         }
-
-        // Crée une nouvelle réservation avec les données du formulaire
+    
+        // Crée une nouvelle instance de Reservation
         $reservation = new Reservation();
-        $reservation->setUser($this->getUser())
-                    ->setRoom($room)
-                    ->setStartDate(new \DateTime($request->request->get('start_date')))
-                    ->setEndDate(new \DateTime($request->request->get('end_date')))
-                    ->setStatus(1);
-
-        // Persiste la nouvelle réservation dans la base de données
-        $em->persist($reservation);
-        $em->flush();
-
-        // Ajoute un message flash pour indiquer que la réservation a été effectuée avec succès
-        $this->addFlash('success', 'Room booked successfully.');
-
-        // Redirige vers la page des réservations de l'utilisateur
-        return $this->redirectToRoute('app_room');
+        $reservation->setRoom($room);
+        $reservation->setUser($this->getUser());
+    
+        // Crée le formulaire de réservation
+        $form = $this->createForm(ReservationType::class, $reservation);
+    
+        // Gère la soumission du formulaire
+        $form->handleRequest($request);
+    
+        // Vérifie si le formulaire a été soumis et est valide
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Persiste la nouvelle réservation dans la base de données
+            $em->persist($reservation);
+            $em->flush();
+    
+            // Message flash pour indiquer que la réservation a été effectuée avec succès
+            $this->addFlash('success', 'Room booked successfully.');
+    
+            // Redirige vers la page des réservations de l'utilisateur
+            return $this->redirectToRoute('app_room');
+        }
+    
+        // Affiche le formulaire de réservation dans le modèle Twig
+        return $this->render('reservation/book_room.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     #[Route('/reservation/{id}', name: 'reservation_show', methods: ['GET'])]
@@ -94,7 +105,7 @@ class ReservationController extends AbstractController
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->flush();
+            $em->flush(); //pr sauvegarder les changes à la bd
             $this->addFlash('success', 'la réservation a été modifiée');
             return $this->redirectToRoute('reservations');
         }
@@ -115,4 +126,6 @@ class ReservationController extends AbstractController
         );
         return $this->redirectToRoute('account');
     }
+
+
 }
