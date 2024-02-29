@@ -22,7 +22,7 @@
                     <p>Caractéristique : {{ feature.name }}</p>
                 {% endfor %}
 		
-				<a href="" class="btn btn-custom btn-lg mt-5 rounded-pill bg-primary">Réserver</a>
+				<a href="{{ path('booking', {id: room.id } ) }}" class="btn btn-custom btn-lg mt-5 rounded-pill bg-primary">Réserver</a>
 
 			</div>
 		</di>

@@ -15,7 +15,7 @@
 				Bienvenu
 				<span class="text-danger">{{ app.user.name }}</span>!
 			{% else %}
-				A quand votre propre code ?
+				 Bienvenu !
 			{% endif %}
 		</h1>
 	</div>
@@ -40,7 +40,7 @@
 						<p>Capacité :
 							{{item.capacity}}
 							places</p>
-						<a href="{{ path('book_room', {id: item.id } ) }}" class="btn btn-custom btn-lg m-2 rounded-pill bg-primary">Réserver</a>
+						<a href="{{ path('booking', {id: item.id } ) }}" class="btn btn-custom btn-lg m-2 rounded-pill bg-primary">Réserver</a>
 						<a href="{{ path('room.show', {id: item.id } ) }}" class="btn btn-custom btn-lg m-2 rounded-pill bg-primary">Voir plus</a>
 					</div>
 				</div>

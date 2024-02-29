@@ -7,10 +7,10 @@
 {% block body %}
 	<div class="container">
 		<ul>
-       
+      
 			{% for reservation in reservations %}
 				 <li>
-					<a href="{{ path('reservations', {id: reservation.id }) }}">{{ reservation.room.name }}</a>
+					<a href="{{ path('booking', {id: reservation.id }) }}">{{ reservation.room.name }}</a>
 				</li>
 			{% endfor %}
 		</ul>
