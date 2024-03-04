@@ -47,21 +47,24 @@
 			<a href="{{ path('app_room_category', {'category': 'Gymnase'}) }}" class="text-white text-decoration-none">Gymnases</a>
 			<a href="{{ path('app_room_category', {'category': 'Salle polyvalente'}) }}" class="text-white text-decoration-none">Salles polyvalentes</a>
 			<a href="{{ path('app_room_category', {'category': 'Sans Catégorie'}) }}" class="text-white text-decoration-none">Autres</a>
-			
+
 		</div>
-		<main>
+		<main class="container my-3">
+
+			{% include 'partials/flash.html.twig' %}
 
 			{% block body %}{% endblock %}
+
 		</main>
 
 		<footer
 			class="d-flex gap-3 w-100 justify-content-center bg-black">{# <a href={{ path('reunion') }} class="text-white text-decoration-none"></a>
-							<a href={{ path('formation') }} class="text-white text-decoration-none"></a>
-							<a href={{ path('amphitheatre') }} class="text-white text-decoration-none"></a>
-							<a href={{ path('spectacle') }} class="text-white text-decoration-none"></a>
-							<a href={{ path('polyvalente') }} class="text-white text-decoration-none"></a>
-							<a href={{ path('gymnase') }} class="text-white text-decoration-none"></a>
-							<a href={{ path('sans') }} class="text-white text-decoration-none"></a> #}
+															<a href={{ path('formation') }} class="text-white text-decoration-none"></a>
+															<a href={{ path('amphitheatre') }} class="text-white text-decoration-none"></a>
+															<a href={{ path('spectacle') }} class="text-white text-decoration-none"></a>
+															<a href={{ path('polyvalente') }} class="text-white text-decoration-none"></a>
+															<a href={{ path('gymnase') }} class="text-white text-decoration-none"></a>
+															<a href={{ path('sans') }} class="text-white text-decoration-none"></a> #}
 		</footer>
 
 	</body>
