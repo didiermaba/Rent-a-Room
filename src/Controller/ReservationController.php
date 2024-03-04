@@ -66,7 +66,7 @@ class ReservationController extends AbstractController
             $em->flush();
     
             // Message flash pour indiquer que la réservation a été effectuée avec succès
-            $this->addFlash('success', 'Room booked successfully.');
+            $this->addFlash('success', 'Votre réservation a bien été effectuée.');
     
             // Redirige vers la page des réservations de l'utilisateur
             return $this->redirectToRoute('app_room');
